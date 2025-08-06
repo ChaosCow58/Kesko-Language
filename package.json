@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/ChaosCow58/Kesko-Language.git"
   },
-  "license": "ISC",
+  "license": "MIT",
   "author": "Sean Ryan",
   "type": "commonjs",
   "main": "main.js",
@@ -24,6 +24,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.17.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7"
   }
 }
