@@ -1,0 +1,29 @@
+{
+  "name": "kesko-language",
+  "version": "1.0.0",
+  "description": "The rules and dictionary for the Kesko Language.",
+  "homepage": "https://github.com/ChaosCow58/Kesko-Language#readme",
+  "bugs": {
+    "url": "https://github.com/ChaosCow58/Kesko-Language/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChaosCow58/Kesko-Language.git"
+  },
+  "license": "ISC",
+  "author": "Sean Ryan",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0",
+    "nodemon": "^3.1.10"
+  }
+}
