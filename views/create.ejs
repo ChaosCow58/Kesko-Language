@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./templates/head', { title: "Create Word" }) %>
+</head>
+
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="mb-4">Create a Word</h1>
+        <form action="/post/create" method="POST">
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label for="groupInput" class="form-label">Group</label>
+                
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label" for="isVerbInput">Is Verb</label>
+                            <input class="form-check-input" type="checkbox" id="isVerbInput" name="isVerb" />
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="form-control" id="groupInput" name="group" readonly required disabled>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="wordInput" class="form-label">Word</label>
+                <input type="text" class="form-control" id="wordInput" name="word" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="typeInput" class="form-label">Type</label>
+                <select class="form-select" name="type" id="typeInput">
+                    <option value="">Choose Type</option>
+                    <option value="noun">Noun</option>
+                    <option value="verb">Verb</option>
+                    <option value="adjective">Adjective</option>
+                    <option value="adverb">Adverb</option>
+                    <option value="preposition">Preposition</option>
+                    <option value="conjunction">Conjunction</option>
+                    <option value="interjection">Interjection</option>
+                    <option value="pronoun">Pronoun</option>
+                    <option value="article">Article</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="pronunciationInput" class="form-label">Pronunciation</label>
+                <input type="text" class="form-control" id="pronunciationInput" name="pronunciation" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Definitions</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addDefinition"> Add
+                        Definition</button>
+                </div>
+                <div id="definitions">
+                    <div class="definition-item mb-2">
+                        <label for="definitionInput" class="form-label">Definition</label>
+                        <input type="text" class="form-control" id="definitionInput" name="definition" required>
+                    </div>
+                    <div class="example-item mb-2">
+                        <label for="exampleInput" class="form-label">Example</label>
+                        <input type="text" class="form-control" id="exampleInput" name="example" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Synonyms</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addSynonym"> Add Synonym</button>
+                </div>
+                <div id="synonyms">
+                    <div class="synonym-item mb-2">
+                        <label for="synonymInput" class="form-label">Synonym</label>
+                        <input type="text" class="form-control" id="synonymInput" name="synonym">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Antonyms</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addAntonym"> Add Antonym</button>
+                </div>
+                <div id="antonyms">
+                    <div class="antonym-item mb-2">
+                        <label for="antonymInput" class="form-label">Antonym</label>
+                        <input type="text" class="form-control" id="antonymInput" name="antonym">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Tags</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addTag"> Add Tag</button>
+                </div>
+                <div id="tags">
+                    <div class="tag-item mb-2">
+                        <label for="tagInput" class="form-label">Tag</label>
+                        <input type="text" class="form-control" id="tagInput" name="tag">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="originInput" class="form-label">Origin</label>
+                <input type="text" class="form-control" id="originInput" name="origin">
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary">Create Word</button>
+        </form>
+    </div>
+
+    <%- include("./templates/scripts") %>
+    <script src="/public/scripts/create.js"></script>
+</body>
+
+</html>

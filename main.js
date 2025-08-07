@@ -4,6 +4,8 @@ const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config({ quiet: true });
 
+const Words = require("./models/words");
+
 const port = 5500;
 const url = `http://localhost:${port}`;
 
@@ -38,6 +40,10 @@ app.get("/", (req, res) => {
 
 app.get("/partials/rules", enforceIframeOnly, (req, res) => {
 	res.render(`partials/rules`);
+});
+
+app.get("/create", (req, res) => {
+	res.render("create");
 });
 
 app.get("/partials/word", enforceIframeOnly, (req, res) => {
