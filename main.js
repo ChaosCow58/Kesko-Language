@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 const port = 5500;
 const url = `http://localhost:${port}`;
@@ -21,10 +21,35 @@ app.listen(port, () => {
 	console.log(`Server is running at ${url}`);
 });
 
+const enforceIframeOnly = (req, res, next) => {
+	const referer = req.get("Referer") || req.get("Origin");
+
+	if (!referer || !referer.startsWith(url)) {
+		res.status(403).render("errors/forbidden");
+		return;
+	}
+
+	next();
+};
+
 app.get("/", (req, res) => {
 	res.render("home");
 });
 
-app.get("/partials/rules", (req, res) => {
+app.get("/partials/rules", enforceIframeOnly, (req, res) => {
 	res.render(`partials/rules`);
+});
+
+app.get("/partials/word", enforceIframeOnly, (req, res) => {
+	const group = req.query.group;
+
+	res.render(`partials/word`);
+});
+
+app.get("/partials/verbs", enforceIframeOnly, (req, res) => {
+	res.render(`partials/verbs`);
+});
+
+app.use((req, res) => {
+	res.status(404).render("errors/notfound");
 });

@@ -2,48 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <%- include('./templates/head', { title: "Dictionary" }) %>
     <link rel="stylesheet" href="/public/styles/home.css">
-    <title>Document</title>
 </head>
 
 <body>
-    <div class="header">
-        <p>Kesko</p>
+    <div class="header d-flex justify-content-between align-items-center mb-3">
+        <p class="mb-0">Kesko Language</p>
+        <a class="btn btn-success" href="/create">
+            <i class="bi bi-plus-lg"></i> Create Word
+        </a>
     </div>
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link" data-page="rules">Rules</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="A">A</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="B">B</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="D">D</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="E">E</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="F">F</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="G">G</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="H">H</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="I">I</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="J">J</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="K">K</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="L">L</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="M">M</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="N">N</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="O">O</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="P">P</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="Q">Q</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="R">R</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="S">S</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="T">T</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="U">U</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="V">V</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="W">W</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="X">X</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="Y">Y</a></li>
-                <li class="nav-item"><a class="nav-link" data-page="word" data-word="Z">Z</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="A">A</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="B">B</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="D">D</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="E">E</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="F">F</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="G">G</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="H">H</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="I">I</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="J">J</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="K">K</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="L">L</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="M">M</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="N">N</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="O">O</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="P">P</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="Q">Q</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="R">R</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="S">S</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="T">T</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="U">U</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="V">V</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="W">W</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="X">X</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="Y">Y</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="word" data-group="Z">Z</a></li>
                 <li class="nav-item"><a class="nav-link" data-page="verbs">Verbs</a></li>
             </ul>
         </div>
@@ -56,9 +55,6 @@
     </div>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
+<%- include('./templates/scripts') %>
 <script src="/public/scripts/home.js"></script>
 </html>

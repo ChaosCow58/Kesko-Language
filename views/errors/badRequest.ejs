@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('../templates/head', { title: "400 Bad Request" }) %>
+	<style>
+		body,
+		html {
+			height: 100%;
+			margin: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #f8f8f8;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+
+		.error-container {
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 8rem;
+			color: #ff4d4d;
+		}
+
+		h2 {
+			font-size: 2rem;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			font-size: 1.2rem;
+			margin-bottom: 2rem;
+		}
+
+		.btn-custom {
+			background-color: #ff4d4d;
+			color: white;
+			padding: 0.75rem 1.5rem;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
+
+		.btn-custom:hover {
+			background-color: #ff3333;
+		}
+
+		.error-image {
+			width: 150px;
+			margin: 2rem 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="error-container">
+			<h1>400</h1>
+			<h2>Bad Request</h2>
+			<p>Oops! The server could not process your request. Please check your input or try again later.</p>
+			<a href="/" class="btn btn-custom btn-home">Back to Home</a>
+		</div>
+	</div>
+
+
+	<%- include('../templates/scripts') %>
+	<script src="/public/scripts/error.js"></script>
+</body>
+
+</html>

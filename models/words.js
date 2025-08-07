@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const wordSchema = new mongoose.Schema({
-    letter : { 
+    group : { 
         type: String,
         required: true,
     },

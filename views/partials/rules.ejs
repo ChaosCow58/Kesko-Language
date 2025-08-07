@@ -2,11 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/public/styles/rules.css" />
+    <%- include('../templates/head', { title: "Rules" }) %>
+    <link rel="stylesheet" href="/public/styles/rules.css">
 </head>
 
 <body class="bg-light text-dark">
@@ -47,10 +44,10 @@
                         In spelling, if both ‘i’ and ‘e’ appear together, ‘e’ must follow ‘i’ (e.g., ‘nie’), unless ‘i’ is followed by ‘y’ (e.g., ‘ity’).
                     </li>
                     <li>The letter "h" is silent.</li>
-                    <li>The letter "j" makes an <i>/h/</i> sound.</li>
+                    <li>The letter "j" makes an /<i>h</i>/ sound.</li>
                     <li>
                         The letters "t" and "s" next to each other like "ts"
-                        makes the <i>/z/</i> sound.
+                        makes the /<i>z</i>/ sound.
                     </li>
                 </ul>
             </div>
@@ -82,13 +79,13 @@
                             <tbody>
                                 <tr>
                                     <td>I</td>
-                                    <td>ke <i>/kee/</i></td>
-                                    <td>kes <i>/kees/</i></td>
+                                    <td>ke /<i>kee</i>/</td>
+                                    <td>kes /<i>kees</i>/</td>
                                 </tr>
                                 <tr>
                                     <td>You</td>
-                                    <td>stu <i>/stoo/</i></td>
-                                    <td>vuo <i>/view/</i></td>
+                                    <td>stu /<i>stoo</i>/</td>
+                                    <td>vuo /<i>view</i>/</td>
                                 </tr>
                                 <tr>
                                     <td>He/She</td>
@@ -218,9 +215,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-        crossorigin="anonymous"></script>
+    <%- include('../templates/scripts') %>
 </body>
 
 </html>
