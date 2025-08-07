@@ -45,11 +45,11 @@ $(() => {
                     <label class="form-label">Definition</label>
                     <button type="button" class="deleteDefinition btn btn-danger bi bi-trash" tooltip="Remove Definition"></button>
                 </div>
-            <input type="text" class="form-control" name="definition" required>
+            <textarea class="form-control" name="definition" required></textarea>
             </div>
                 <div class="example-item mb-2">
                         <label class="form-label">Example</label>
-                        <input type="text" class="form-control" name="example" required>
+                        <textarea class="form-control" name="example" required></textarea>
                     </div>
                 </div>
             </div>
