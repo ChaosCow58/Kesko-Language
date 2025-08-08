@@ -46,10 +46,45 @@ app.get("/create", (req, res) => {
 	res.render("create");
 });
 
-app.get("/partials/word", enforceIframeOnly, (req, res) => {
-	const group = req.query.group;
+const safeArray = (val) => (Array.isArray(val) ? val : [val]);
 
-	res.render(`partials/word`);
+app.post("/post/create", async (req, res) => {
+	const {
+		group,
+		word,
+		type,
+		pronunciation,
+		definition,
+		example,
+		synonym,
+		antonym,
+		tag,
+		origin,
+	} = req.body;
+
+	await Words.create({
+		group: group,
+		word: word,
+		pronunciation: pronunciation,
+		definitions: safeArray(definition).map((def, i) => ({
+			type: safeArray(type)[i] || "noun",
+			definition: def,
+			example: safeArray(example)[i] || "",
+		})),
+		synonyms: safeArray(synonym).flat(),
+		antonyms: safeArray(antonym).flat(),
+		tags: safeArray(tag).flat(),
+		origin: origin,
+	});
+
+	res.redirect("/");
+});
+
+app.get("/partials/word", enforceIframeOnly, async (req, res) => {
+	const group = req.query.group;
+	const words = await Words.find({ group: group }).lean().select("-_id").sort({ word: 1 });
+
+	res.render(`partials/word`, { words: words });
 });
 
 app.get("/partials/verbs", enforceIframeOnly, (req, res) => {

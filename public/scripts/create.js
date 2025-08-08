@@ -10,22 +10,14 @@ $(() => {
 		return false;
 	};
 
-	let previousType = "";
-
 	const updateGroupInput = () => {
 		const word = $("#wordInput").val();
 
 		if (testWordInput(word)) return;
 
 		if ($("#isVerbInput").prop("checked")) {
-			if ($("#typeInput").val() !== "verb") {
-				previousType = $("#typeInput").val();
-			}
-
 			$("#groupInput").val("Verb");
-			$("#typeInput").val("verb");
 		} else {
-			$("#typeInput").val(previousType);
 			$("#groupInput").val(word.charAt(0).toUpperCase());
 		}
 	};
@@ -38,21 +30,36 @@ $(() => {
 
 	$("#addDefinition").on("click", () => {
 		const definitionHtml = `
-        <div class="definition-wrapper">
-            <hr>
-            <div class="definition-item mb-2">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <label class="form-label">Definition</label>
-                    <button type="button" class="deleteDefinition btn btn-danger bi bi-trash" tooltip="Remove Definition"></button>
-                </div>
-            <textarea class="form-control" name="definition" required></textarea>
-            </div>
-                <div class="example-item mb-2">
-                        <label class="form-label">Example</label>
-                        <textarea class="form-control" name="example" required></textarea>
-                    </div>
-                </div>
-            </div>
+			<div class="definition-wrapper">
+				<hr>
+				<div class="type-item mb-2">
+					<div class="d-flex justify-content-between align-items-center mb-2">
+						<label class="form-label">Type</label>
+						<button type="button" class="deleteDefinition btn btn-danger bi bi-trash" title="Remove Definition"></button>
+					</div>
+					<select class="form-select" name="type" required>
+						<option value="">Choose Type</option>
+						<option value="noun">Noun</option>
+						<option value="verb">Verb</option>
+						<option value="adjective">Adjective</option>
+						<option value="adverb">Adverb</option>
+						<option value="preposition">Preposition</option>
+						<option value="conjunction">Conjunction</option>
+						<option value="interjection">Interjection</option>
+						<option value="pronoun">Pronoun</option>
+						<option value="article">Article</option>
+					</select>
+				</div>
+				<div class="definition-item mb-2">
+					<label class="form-label">Definition</label>
+					<textarea class="form-control" name="definition" required></textarea>
+				</div>
+				<div class="example-item mb-2">
+						<label class="form-label">Example</label>
+						<textarea class="form-control" name="example" required></textarea>
+					</div>
+				</div>
+			</div>
         `;
 		$("#definitions").append(definitionHtml);
 	});

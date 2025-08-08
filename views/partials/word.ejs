@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../templates/head', { title: "Words" }) %>
+    <link rel="stylesheet" href="/public/styles/word.css" />
 </head>
-<body>
-    <p>Words</p>
 
-    <%- include("../templates/scripts")  %>
+<body class="bg-light text-dark">
+    <div class="container py-5">
+        <h1 class="pb-2"><%= words[0]?.group ? "Words - " + words[0].group : 'No Words in this Group' %></h1>
+        <% words.forEach(word => { %>
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h2>
+                        <%= word.word %> /<i><%= word.pronunciation %></i>/
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="pt-1">Definitions:</h5>
+                    <% if (word.definitions.length > 0) { %>
+                        <% 
+                            const grouped = {};
+                            word.definitions.forEach(def => {
+                                if (!grouped[def.type]) grouped[def.type] = [];
+                                grouped[def.type].push(def);
+                            });
+                        %>
+
+                        <% Object.keys(grouped).forEach(type => { %>
+                            <i class="text-muted"><%= type %></i>
+                            <ol>
+                                <% grouped[type].forEach(def => { %>
+                                    <li>
+                                        <p class="definition"><%= def.definition %></p>
+                                        <p class="text-muted">"<%= def.example %>"</p>
+                                    </li>
+                                <% }) %>
+                            </ol>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No definitions available.</p>
+                    <% } %>
+
+                    <% if (word.synonyms.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Similar:</span>
+                            <% word.synonyms.forEach((syn, i) => { %>
+                                <%= syn %><%= i < word.synonyms.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <% if (word.antonyms.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Antonyms:</span>
+                            <% word.antonyms.forEach((ant, i) => { %>
+                                <%= ant %><%= i < word.antonyms.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <% if (word.tags.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Tags:</span>
+                            <% word.tags.forEach((tag, i) => { %>
+                                <%= tag %><%= i < word.tags.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <%- "<p><span class='h6'>Origin: </span>" + word.origin + "</p>" %>
+                </div>
+        <% }) %>
+    </div>
+
+    <%- include("../templates/scripts") %>
 </body>
+
 </html>

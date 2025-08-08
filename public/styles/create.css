@@ -1,0 +1,11 @@
+.fake-disabled {
+    pointer-events: none;
+    background-color: #e9ecef;
+    /* Bootstrap's default disabled input bg */
+    opacity: 1;
+}
+
+.required-star {
+	color: #d32f2f;
+    font-size: 0.7rem;
+}

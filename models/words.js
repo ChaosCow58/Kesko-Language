@@ -9,16 +9,16 @@ const wordSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    type: { 
-        type: String,
-        required: true,
-        enum: ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'interjection', 'pronoun', 'article']
-    },
     pronunciation: { 
         type: String,
         required: true
     },
-	definitions: [{ 
+	definitions: [{
+        type: {
+            type: String, 
+            required: true,
+            enum: ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'interjection', 'pronoun', 'article']
+        },
         definition: {
             type: String, 
             required: true,
@@ -39,7 +39,6 @@ const wordSchema = new mongoose.Schema({
     }],
     origin: { 
         type: String,
-        required: true
     },
 });
 
