@@ -12,9 +12,17 @@
         <% words.forEach(word => { %>
             <div class="card mb-4">
                 <div class="card-header bg-success text-white">
-                    <h2>
-                        <%= word.word %> /<i><%= word.pronunciation %></i>/
-                    </h2>
+                    <span class="wordId" style="display: none;"><%= word._id %></span>
+                    <div class="d-flex justify-content-between align-items-center">    
+                        <h2>
+                            <%= word.word %> /<i><%= word.pronunciation %></i>/
+                        </h2>
+
+                        <div>
+                            <button class="btn btn-primary btn-sm me-1 updateBtn"><i class="bi bi-pencil"></i> Update</button>
+                            <button class="btn btn-danger btn-sm deleteBtn"><i class="bi bi-trash"></i> Delete</button>
+                        </div>
+                    </div>
                 </div> 
 
                 <div class="card-body">
@@ -89,6 +97,7 @@
     </div>
 
     <%- include("../templates/scripts") %>
+    <script src="/public/scripts/word.js"></script>
 </body>
 
 </html>

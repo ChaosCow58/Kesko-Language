@@ -46,6 +46,13 @@ app.get("/create", (req, res) => {
 	res.render("create");
 });
 
+app.get("/partials/word", enforceIframeOnly, async (req, res) => {
+	const group = req.query.group;
+	const words = await Words.find({ group: group }).lean().sort({ word: 1 });
+
+	res.render(`partials/word`, { words: words });
+});
+
 const safeArray = (val) => (Array.isArray(val) ? val : [val]);
 const cleanEmptyStrings = (obj) =>
 	Object.fromEntries(
@@ -97,14 +104,50 @@ app.post("/post/create", async (req, res) => {
 	res.redirect("/");
 });
 
-app.get("/partials/word", enforceIframeOnly, async (req, res) => {
-	const group = req.query.group;
-	const words = await Words.find({ group: group })
-		.lean()
-		.select("-_id")
-		.sort({ word: 1 });
+app.post("/post/getUpdate", async (req, res) => {
+    // 1. Get the ID from the request
+    const { id } = req.body;
 
-	res.render(`partials/word`, { words: words });
+    // 2. Handle the case where the ID is missing
+    if (!id) {
+        return res.status(400).render("errors/badrequest");
+    }
+
+    try {
+        // 3. This code block will run and wait for the database to respond
+        const word = await Words.findById(id).lean();
+
+        // 4. If an error occurred during the await, the catch block will run instead
+
+        // 5. If the database found no word, handle that case
+        if (!word) {
+            return res.status(404).render("errors/notfound");
+        }
+
+        // 6. If everything is successful, render the page
+        res.render("partials/updateWord", { word: word });
+
+    } catch (error) {
+        // 7. This block will catch any errors from the try block
+        console.error("Error finding or rendering word:", error);
+        res.status(500).render("errors/internal");
+    }
+});
+
+app.post("/post/deleteWord", async (req, res) => {
+	const { id } = req.body;
+
+	if (!id) {
+		return res.status(400).render("errors/badrequest");
+	}
+
+	try {
+		await Words.findByIdAndDelete(id);
+		res.json({ success: true });
+	} catch (error) {
+		console.error("Error deleting word:", error);
+		res.status(500).render("errors/internal");
+	}
 });
 
 app.get("/partials/verbs", enforceIframeOnly, (req, res) => {
