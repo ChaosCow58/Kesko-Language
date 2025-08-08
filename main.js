@@ -47,34 +47,51 @@ app.get("/create", (req, res) => {
 });
 
 const safeArray = (val) => (Array.isArray(val) ? val : [val]);
+const cleanEmptyStrings = (obj) =>
+	Object.fromEntries(
+		Object.entries(obj).filter(([_, v]) => v && v.trim() !== "")
+	);
 
 app.post("/post/create", async (req, res) => {
 	const {
+		isVerb,
 		group,
 		word,
-		type,
 		pronunciation,
-		definition,
-		example,
-		synonym,
-		antonym,
-		tag,
+		definitions = {},
+		forms = {},
+		synonyms,
+		antonyms,
+		tags,
 		origin,
 	} = req.body;
+
+	const defTypes = safeArray(definitions.type);
+	const defDefs = safeArray(definitions.definition);
+	const defExamples = safeArray(definitions.example);
 
 	await Words.create({
 		group: group,
 		word: word,
 		pronunciation: pronunciation,
-		definitions: safeArray(definition).map((def, i) => ({
-			type: safeArray(type)[i] || "noun",
-			definition: def,
-			example: safeArray(example)[i] || "",
-		})),
-		synonyms: safeArray(synonym).flat(),
-		antonyms: safeArray(antonym).flat(),
-		tags: safeArray(tag).flat(),
+		definitions: defDefs
+			.filter((def) => def && def.trim() !== "")
+			.map((def, i) => ({
+				type: defTypes[i],
+				definition: def,
+				example: defExamples[i],
+			})),
+		synonyms: safeArray(synonyms)
+			.flat()
+			.filter((syn) => syn && syn.trim() !== ""),
+		antonyms: safeArray(antonyms)
+			.flat()
+			.filter((ant) => ant && ant.trim() !== ""),
+		tags: safeArray(tags)
+			.flat()
+			.filter((tag) => tag && tag.trim() !== ""),
 		origin: origin,
+		forms: cleanEmptyStrings(forms),
 	});
 
 	res.redirect("/");
@@ -82,7 +99,10 @@ app.post("/post/create", async (req, res) => {
 
 app.get("/partials/word", enforceIframeOnly, async (req, res) => {
 	const group = req.query.group;
-	const words = await Words.find({ group: group }).lean().select("-_id").sort({ word: 1 });
+	const words = await Words.find({ group: group })
+		.lean()
+		.select("-_id")
+		.sort({ word: 1 });
 
 	res.render(`partials/word`, { words: words });
 });

@@ -37,7 +37,7 @@ $(() => {
 						<label class="form-label">Type</label>
 						<button type="button" class="deleteDefinition btn btn-danger bi bi-trash" title="Remove Definition"></button>
 					</div>
-					<select class="form-select" name="type" required>
+					<select class="form-select" name="definitions[type][]" required>
 						<option value="">Choose Type</option>
 						<option value="noun">Noun</option>
 						<option value="verb">Verb</option>
@@ -52,11 +52,11 @@ $(() => {
 				</div>
 				<div class="definition-item mb-2">
 					<label class="form-label">Definition</label>
-					<textarea class="form-control" name="definition" required></textarea>
+					<textarea class="form-control" name="definitions[definition][]" required></textarea>
 				</div>
 				<div class="example-item mb-2">
 						<label class="form-label">Example</label>
-						<textarea class="form-control" name="example" required></textarea>
+						<textarea class="form-control" name="definitions[example][]" required></textarea>
 					</div>
 				</div>
 			</div>
@@ -76,7 +76,7 @@ $(() => {
                     <label class="form-label">Synonym</label>
                     <button type="button" class="deleteSynonym btn btn-danger bi bi-trash" tooltip="Remove Synonym"></button>
                 </div>
-                <input type="text" class="form-control" name="synonym">
+                <input type="text" class="form-control" name="synonyms[]">
             </div>
         `;
 		$("#synonyms").append(synonymHtml);
@@ -94,7 +94,7 @@ $(() => {
                     <label class="form-label">Antonym</label>
                     <button type="button" class="deleteAntonym btn btn-danger bi bi-trash" tooltip="Remove Antonym"></button>
                 </div>
-                <input type="text" class="form-control" name="antonym">
+                <input type="text" class="form-control" name="antonyms[]">
             </div>
         `;
 		$("#antonyms").append(antonymHtml);
@@ -112,7 +112,7 @@ $(() => {
                     <label class="form-label">Tag</label>
                     <button type="button" class="deleteTag btn btn-danger bi bi-trash" tooltip="Remove Tag"></button>
                 </div>
-                <input type="text" class="form-control" name="tag">
+                <input type="text" class="form-control" name="tags[]">
             </div>
         `;
 

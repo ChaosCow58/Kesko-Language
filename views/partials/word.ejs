@@ -15,9 +15,22 @@
                     <h2>
                         <%= word.word %> /<i><%= word.pronunciation %></i>/
                     </h2>
-                </div>
+                </div> 
 
                 <div class="card-body">
+                    <% if (word.forms) { %>
+                        <% 
+                            let parts = [];
+                            if (word.forms.plural) parts.push(`plural: <b>${word.forms.plural}</b>`);
+                            if (word.forms.pastTense) parts.push(`past tense: <b>${word.forms.pastTense}</b>`);
+                            if (word.forms.comparative) parts.push(`comparative: <b>${word.forms.comparative}</b>`);
+                            if (word.forms.superlative) parts.push(`superlative: <b>${word.forms.superlative}</b>`);
+                        %>
+                        <% if (parts.length) { %>
+                            <p class="text-muted"><span><%- parts.join("; ") %></span></p>
+                        <% } %>
+                    <% } %>
+
                     <h5 class="pt-1">Definitions:</h5>
                     <% if (word.definitions.length > 0) { %>
                         <% 
@@ -70,7 +83,7 @@
                         </p>
                     <% } %>
 
-                    <%- "<p><span class='h6'>Origin: </span>" + word.origin + "</p>" %>
+                    <%- word.origin ? "<p><span class='h6'>Origin: </span>" + word.origin + "</p>" : "" %>
                 </div>
         <% }) %>
     </div>

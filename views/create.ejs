@@ -31,8 +31,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="wordInput" class="form-label">Word
-                    <sup class="required-star bi bi-asterisk"></sup></label>
+                <label for="wordInput" class="form-label">Word <sup class="required-star bi bi-asterisk"></sup></label>
 
                 <input type="text" class="form-control" id="wordInput" name="word" required />
             </div>
@@ -46,7 +45,8 @@
 
             <div class="form-group mb-3">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h4 class="form-label">Definitions
+                    <h4 class="form-label">
+                        Definitions
                         <sup class="required-star bi bi-asterisk"></sup>
                     </h4>
                     <button type="button" class="btn btn-success bi bi-plus-lg mb-2" id="addDefinition">
@@ -56,7 +56,7 @@
                 <div id="definitions">
                     <div class="type-item mb-2">
                         <label for="typeInput" class="form-label">Type</label>
-                        <select class="form-select" name="type" id="typeInput" required>
+                        <select class="form-select" name="definitions[type][]" id="typeInput" required>
                             <option value="">Choose Type</option>
                             <option value="noun">Noun</option>
                             <option value="verb">Verb</option>
@@ -64,18 +64,20 @@
                             <option value="adverb">Adverb</option>
                             <option value="preposition">Preposition</option>
                             <option value="conjunction">Conjunction</option>
-                            <option value="interjection">Interjection</option>
+                            <option value="interjection">
+                                Interjection
+                            </option>
                             <option value="pronoun">Pronoun</option>
                             <option value="article">Article</option>
                         </select>
                     </div>
                     <div class="definition-item mb-2">
                         <label for="definitionInput" class="form-label">Definition</label>
-                        <textarea class="form-control" id="definitionInput" name="definition" required></textarea>
+                        <textarea class="form-control" id="definitionInput" name="definitions[definition][]" required></textarea>
                     </div>
                     <div class="example-item mb-2">
                         <label for="exampleInput" class="form-label">Example</label>
-                        <textarea class="form-control" id="exampleInput" name="example" required></textarea>
+                        <textarea class="form-control" id="exampleInput" name="definitions[example][]" required></textarea>
                     </div>
                 </div>
             </div>
@@ -90,7 +92,7 @@
                 <div id="synonyms">
                     <div class="synonym-item mb-2">
                         <label for="synonymInput" class="form-label">Synonym</label>
-                        <input type="text" class="form-control" id="synonymInput" name="synonym" />
+                        <input type="text" class="form-control" id="synonymInput" name="synonyms[]" />
                     </div>
                 </div>
             </div>
@@ -105,7 +107,7 @@
                 <div id="antonyms">
                     <div class="antonym-item mb-2">
                         <label for="antonymInput" class="form-label">Antonym</label>
-                        <input type="text" class="form-control" id="antonymInput" name="antonym" />
+                        <input type="text" class="form-control" id="antonymInput" name="antonyms[]" />
                     </div>
                 </div>
             </div>
@@ -120,7 +122,7 @@
                 <div id="tags">
                     <div class="tag-item mb-2">
                         <label for="tagInput" class="form-label">Tag</label>
-                        <input type="text" class="form-control" id="tagInput" name="tag" />
+                        <input type="text" class="form-control" id="tagInput" name="tags[]" />
                     </div>
                 </div>
             </div>
@@ -128,6 +130,31 @@
             <div class="form-group mb-3">
                 <label for="originInput" class="form-label">Origin</label>
                 <input type="text" class="form-control" id="originInput" name="origin" />
+            </div>
+
+            <!-- Word Forms Section -->
+            <div class="form-group mb-3">
+                <h4 class="form-label">Word Forms</h4>
+
+                <div class="form-group mb-2">
+                    <label for="pluralInput" class="form-label">Plural</label>
+                    <input type="text" class="form-control" id="pluralInput" name="forms[plural]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="pastTenseInput" class="form-label">Past Tense</label>
+                    <input type="text" class="form-control" id="pastTenseInput" name="forms[pastTense]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="comparativeInput" class="form-label">Comparative</label>
+                    <input type="text" class="form-control" id="comparativeInput" name="forms[comparative]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="superlativeInput" class="form-label">Superlative</label>
+                    <input type="text" class="form-control" id="superlativeInput" name="forms[superlative]" />
+                </div>
             </div>
 
             <button type="submit" class="btn btn-outline-primary">
