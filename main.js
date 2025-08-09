@@ -105,30 +105,21 @@ app.post("/post/create", async (req, res) => {
 });
 
 app.post("/post/getUpdate", async (req, res) => {
-    // 1. Get the ID from the request
     const { id } = req.body;
 
-    // 2. Handle the case where the ID is missing
     if (!id) {
         return res.status(400).render("errors/badrequest");
     }
 
     try {
-        // 3. This code block will run and wait for the database to respond
         const word = await Words.findById(id).lean();
 
-        // 4. If an error occurred during the await, the catch block will run instead
-
-        // 5. If the database found no word, handle that case
         if (!word) {
             return res.status(404).render("errors/notfound");
         }
-
-        // 6. If everything is successful, render the page
-        res.render("partials/updateWord", { word: word });
-
+		
+		res.render("partials/updateWord", { word: word });
     } catch (error) {
-        // 7. This block will catch any errors from the try block
         console.error("Error finding or rendering word:", error);
         res.status(500).render("errors/internal");
     }

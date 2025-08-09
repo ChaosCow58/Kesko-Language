@@ -36,6 +36,9 @@ $(() => {
 			url: `/post/getUpdate`,
 			type: "POST",
 			data: { id: wordId },
+			success: (response) => {
+				$("html").html(response);
+			}
 		});
 	});
 });

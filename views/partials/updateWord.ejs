@@ -1,9 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../templates/head', { title: "Update Word" }) %>
+    <link rel="stylesheet" href="/public/styles/create.css">
 </head>
-<body>
-    <%= word.word %>
+
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h1 class="mb-4">Update a Word</h1>
+            <a href="/partials/word?group=<%= word.group %>" class="btn btn-light" style="font-size: 1.7rem" title="Go back to home">
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+        <form action="/post/create" method="POST" novalidate>
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label for="groupInput" class="form-label">Group
+                        <sup class="required-star bi bi-asterisk"></sup></label>
+
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label" for="isVerbInput">Is Verb</label>
+                            <input class="form-check-input" type="checkbox" id="isVerbInput" name="isVerb" />
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="form-control fake-disabled" id="groupInput" name="group" value="<%= word.group %>" readonly required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="wordInput" class="form-label">Word <sup class="required-star bi bi-asterisk"></sup></label>
+
+                <input type="text" class="form-control" id="wordInput" name="word" value="<%= word.word %>" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="pronunciationInput" class="form-label">Pronunciation
+                    <sup class="required-star bi bi-asterisk"></sup></label>
+
+                <input type="text" class="form-control" id="pronunciationInput" name="pronunciation" value="<%= word.pronunciation %>" required />
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">
+                        Definitions
+                        <sup class="required-star bi bi-asterisk"></sup>
+                    </h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg mb-2" id="addDefinition">
+                        Add Definition
+                    </button>
+                </div>
+                <div id="definitions">
+                    <div class="type-item mb-2">
+                        <label for="typeInput" class="form-label">Type</label>
+                        <select class="form-select" name="definitions[type][]" id="typeInput" required>
+                            <option value="">Choose Type</option>
+                            <option value="noun">Noun</option>
+                            <option value="verb">Verb</option>
+                            <option value="adjective">Adjective</option>
+                            <option value="adverb">Adverb</option>
+                            <option value="preposition">Preposition</option>
+                            <option value="conjunction">Conjunction</option>
+                            <option value="interjection">
+                                Interjection
+                            </option>
+                            <option value="pronoun">Pronoun</option>
+                            <option value="article">Article</option>
+                        </select>
+                    </div>
+                    <div class="definition-item mb-2">
+                        <label for="definitionInput" class="form-label">Definition</label>
+                        <textarea class="form-control" id="definitionInput" name="definitions[definition][]" required></textarea>
+                    </div>
+                    <div class="example-item mb-2">
+                        <label for="exampleInput" class="form-label">Example</label>
+                        <textarea class="form-control" id="exampleInput" name="definitions[example][]" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Synonyms</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addSynonym">
+                        Add Synonym
+                    </button>
+                </div>
+                <div id="synonyms">
+                    <div class="synonym-item mb-2">
+                        <label for="synonymInput" class="form-label">Synonym</label>
+                        <input type="text" class="form-control" id="synonymInput" name="synonyms[]" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Antonyms</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addAntonym">
+                        Add Antonym
+                    </button>
+                </div>
+                <div id="antonyms">
+                    <div class="antonym-item mb-2">
+                        <label for="antonymInput" class="form-label">Antonym</label>
+                        <input type="text" class="form-control" id="antonymInput" name="antonyms[]" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="form-label">Tags</h4>
+                    <button type="button" class="btn btn-success bi bi-plus-lg" id="addTag">
+                        Add Tag
+                    </button>
+                </div>
+                <div id="tags">
+                    <div class="tag-item mb-2">
+                        <label for="tagInput" class="form-label">Tag</label>
+                        <input type="text" class="form-control" id="tagInput" name="tags[]" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="originInput" class="form-label">Origin</label>
+                <input type="text" class="form-control" id="originInput" name="origin" />
+            </div>
+
+            <!-- Word Forms Section -->
+            <div class="form-group mb-3">
+                <h4 class="form-label">Word Forms</h4>
+
+                <div class="form-group mb-2">
+                    <label for="pluralInput" class="form-label">Plural</label>
+                    <input type="text" class="form-control" id="pluralInput" name="forms[plural]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="pastTenseInput" class="form-label">Past Tense</label>
+                    <input type="text" class="form-control" id="pastTenseInput" name="forms[pastTense]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="comparativeInput" class="form-label">Comparative</label>
+                    <input type="text" class="form-control" id="comparativeInput" name="forms[comparative]" />
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="superlativeInput" class="form-label">Superlative</label>
+                    <input type="text" class="form-control" id="superlativeInput" name="forms[superlative]" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary">
+                Create Word
+            </button>
+        </form>
+    </div>
+
+    <%- include("../templates/scripts") %>
+    <script src="/public/scripts/form.js"></script>
+    <script src="/public/scripts/create.js"></script>
 </body>
+
 </html>
