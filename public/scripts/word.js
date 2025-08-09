@@ -37,7 +37,7 @@ $(() => {
 			type: "POST",
 			data: { id: wordId },
 			success: (response) => {
-				$("html").html(response);
+				$("body").html(response);
 			}
 		});
 	});

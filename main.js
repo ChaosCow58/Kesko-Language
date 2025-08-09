@@ -59,6 +59,8 @@ const cleanEmptyStrings = (obj) =>
 		Object.entries(obj).filter(([_, v]) => v && v.trim() !== "")
 	);
 
+const cleanArr = (arr) => safeArray(arr).filter((v) => v && v.trim() !== "");
+
 app.post("/post/create", async (req, res) => {
 	const {
 		isVerb,
@@ -88,15 +90,9 @@ app.post("/post/create", async (req, res) => {
 				definition: def,
 				example: defExamples[i],
 			})),
-		synonyms: safeArray(synonyms)
-			.flat()
-			.filter((syn) => syn && syn.trim() !== ""),
-		antonyms: safeArray(antonyms)
-			.flat()
-			.filter((ant) => ant && ant.trim() !== ""),
-		tags: safeArray(tags)
-			.flat()
-			.filter((tag) => tag && tag.trim() !== ""),
+		synonyms: cleanArr(synonyms).flat(),
+		antonyms: cleanArr(antonyms).flat(),
+		tags: cleanArr(tags).flat(),
 		origin: origin,
 		forms: cleanEmptyStrings(forms),
 	});
@@ -105,24 +101,72 @@ app.post("/post/create", async (req, res) => {
 });
 
 app.post("/post/getUpdate", async (req, res) => {
-    const { id } = req.body;
+	const { id } = req.body;
 
-    if (!id) {
-        return res.status(400).render("errors/badrequest");
-    }
+	if (!id) {
+		return res.status(400).render("errors/badrequest");
+	}
 
-    try {
-        const word = await Words.findById(id).lean();
+	try {
+		const word = await Words.findById(id).lean();
 
-        if (!word) {
-            return res.status(404).render("errors/notfound");
-        }
-		
+		if (!word) {
+			return res.status(404).render("errors/notfound");
+		}
+
 		res.render("partials/updateWord", { word: word });
-    } catch (error) {
-        console.error("Error finding or rendering word:", error);
-        res.status(500).render("errors/internal");
-    }
+	} catch (error) {
+		console.error("Error finding or rendering word:", error);
+		res.status(500).render("errors/internal");
+	}
+});
+
+app.post("/post/updateWord", async (req, res) => {
+	const {
+		id,
+		group,
+		word,
+		pronunciation,
+		definitions,
+		forms,
+		synonyms,
+		antonyms,
+		tags,
+		origin,
+	} = req.body;
+
+	if (!id) {
+		return res.status(400).render("errors/badrequest");
+	}
+
+	const defTypes = safeArray(definitions.type);
+	const defDefs = safeArray(definitions.definition);
+	const defExamples = safeArray(definitions.example);
+
+	try {
+		await Words.findByIdAndUpdate(id, {
+			group,
+			word,
+			pronunciation,
+			definitions: defDefs
+				.filter((def) => def && def.trim() !== "")
+				.map((def, i) => ({
+					type: defTypes[i],
+					definition: def,
+					example: defExamples[i],
+				})),
+			forms: cleanEmptyStrings(forms),
+			synonyms: cleanArr(synonyms).flat(),
+			antonyms: cleanArr(antonyms).flat(),
+			tags: cleanArr(tags).flat(),
+			origin,
+		});
+		
+		res.redirect(`/partials/word?group=${group}`);
+	} catch (error) {
+		console.error("Error updating word:", error);
+		res.status(500).render("errors/internal");
+	}
 });
 
 app.post("/post/deleteWord", async (req, res) => {

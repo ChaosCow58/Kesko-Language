@@ -55,12 +55,12 @@ $(() => {
 					<textarea class="form-control" name="definitions[definition][]" required></textarea>
 				</div>
 				<div class="example-item mb-2">
-						<label class="form-label">Example</label>
-						<textarea class="form-control" name="definitions[example][]" required></textarea>
-					</div>
+					<label class="form-label">Example</label>
+					<textarea class="form-control" name="definitions[example][]" required></textarea>
 				</div>
 			</div>
         `;
+
 		$("#definitions").append(definitionHtml);
 	});
 
