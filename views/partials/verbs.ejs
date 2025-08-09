@@ -1,11 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include('../templates/head', { title: "Verbs" }) %>
 </head>
-<body>
-    <p>Verbs</p>
 
-    <%- include("../templates/scripts")  %>
+<body class="bg-light text-dark">
+    <div class="container py-5">
+        <h1 class="pb-2">
+            <%= verbs.length> 0 ? "Verbs" : "No Verbs Found" %>
+        </h1>
+
+        <% verbs.forEach(verb => { %>
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <span class="verbId" style="display: none">
+                        <%= verb._id %>
+                    </span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2>
+                            <%= verb.word %> /<i><%= verb.pronunciation %></i>/
+                        </h2>
+
+                        <div>
+                            <button class="btn btn-primary btn-sm me-1 updateBtn">
+                                <i class="bi bi-pencil"></i> Update
+                            </button>
+                            <button class="btn btn-danger btn-sm deleteBtn">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="pt-1">Definitions:</h5>
+                    <% if (verb.definitions.length > 0) { %>
+                        <i class="text-muted">verb</i>
+                        <ol>
+                            <% verb.definitions.forEach(def => { %>
+                                <li>
+                                    <span class="definition"><%= def.definition %></span>
+                                    <p class="text-muted">"<%= def.example %>"</p>
+                                </li>
+                            <% }) %>
+                        </ol>
+                    <% } else { %>
+                        <p>No definitions available.</p>
+                    <% } %>
+
+                    <% if (verb.synonyms.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Similar:</span>
+                            <% verb.synonyms.forEach((syn, i) => { %>
+                                <%= syn %><%= i < verb.synonyms.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <% if (verb.antonyms.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Antonyms:</span>
+                            <% verb.antonyms.forEach((ant, i) => { %>
+                                <%= ant %><%= i < verb.antonyms.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <% if (verb.tags.length > 0) { %>
+                        <p class="pt-1">
+                            <span class="h6">Tags:</span>
+                            <% verb.tags.forEach((tag, i) => { %>
+                                <%= tag %><%= i < verb.tags.length - 1 ? ', ' : '' %>
+                            <% }) %>
+                        </p>
+                    <% } %>
+
+                    <%- verb.origin ? "<p><span class='h6'>Origin: </span>" + verb.origin + "</p>" : "" %>
+
+                    <h4 class="mb-0">Conjugations:</h5>
+
+                    <h5 class="pt-2">Past Tense:</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <td></td>
+                                    <td>Singular</td>
+                                    <td>Plural</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>First Person</td>
+                                    <td><%= verb.conjugations.past.singular.firstPerson %></td>
+                                    <td><%= verb.conjugations.past.plural.firstPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Second Person</td>
+                                    <td><%= verb.conjugations.past.singular.secondPerson %></td>
+                                    <td><%= verb.conjugations.past.plural.secondPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Third Person</td>
+                                    <td><%= verb.conjugations.past.singular.thirdPerson %></td>
+                                    <td><%= verb.conjugations.past.plural.thirdPerson %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="pt-2">Present Tense:</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <td></td>
+                                    <td>Singular</td>
+                                    <td>Plural</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>First Person</td>
+                                    <td><%= verb.conjugations.present.singular.firstPerson %></td>
+                                    <td><%= verb.conjugations.present.plural.firstPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Second Person</td>
+                                    <td><%= verb.conjugations.present.singular.secondPerson %></td>
+                                    <td><%= verb.conjugations.present.plural.secondPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Third Person</td>
+                                    <td><%= verb.conjugations.present.singular.thirdPerson %></td>
+                                    <td><%= verb.conjugations.present.plural.thirdPerson %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="pt-2">Future Tense:</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <td></td>
+                                    <td>Singular</td>
+                                    <td>Plural</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>First Person</td>
+                                    <td><%= verb.conjugations.future.singular.firstPerson %></td>
+                                    <td><%= verb.conjugations.future.plural.firstPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Second Person</td>
+                                    <td><%= verb.conjugations.future.singular.secondPerson %></td>
+                                    <td><%= verb.conjugations.future.plural.secondPerson %></td>
+                                </tr>
+                                <tr>
+                                    <td>Third Person</td>
+                                    <td><%= verb.conjugations.future.singular.thirdPerson %></td>
+                                    <td><%= verb.conjugations.future.plural.thirdPerson %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <%- include("../templates/scripts") %>
 </body>
+
 </html>

@@ -56,7 +56,7 @@
                 <div id="definitions">
                     <div class="type-item mb-2">
                         <label for="typeInput" class="form-label">Type</label>
-                        <select class="form-select" name="definitions[type][]" id="typeInput" required>
+                        <select class="typeSelect form-select" name="definitions[type][]" id="typeInput" required>
                             <option value="">Choose Type</option>
                             <option value="noun">Noun</option>
                             <option value="verb">Verb</option>
@@ -73,11 +73,13 @@
                     </div>
                     <div class="definition-item mb-2">
                         <label for="definitionInput" class="form-label">Definition</label>
-                        <textarea class="form-control" id="definitionInput" name="definitions[definition][]" required></textarea>
+                        <textarea class="form-control" id="definitionInput" name="definitions[definition][]"
+                            required></textarea>
                     </div>
                     <div class="example-item mb-2">
                         <label for="exampleInput" class="form-label">Example</label>
-                        <textarea class="form-control" id="exampleInput" name="definitions[example][]" required></textarea>
+                        <textarea class="form-control" id="exampleInput" name="definitions[example][]"
+                            required></textarea>
                     </div>
                 </div>
             </div>
@@ -133,7 +135,7 @@
             </div>
 
             <!-- Word Forms Section -->
-            <div class="form-group mb-3">
+            <div id="wordForms" class="form-group mb-3">
                 <h4 class="form-label">Word Forms</h4>
 
                 <div class="form-group mb-2">
@@ -154,6 +156,100 @@
                 <div class="form-group mb-2">
                     <label for="superlativeInput" class="form-label">Superlative</label>
                     <input type="text" class="form-control" id="superlativeInput" name="forms[superlative]" />
+                </div>
+            </div>
+
+            <div id="verbConjugations" class="form-group mb-3">
+                <h4 class="form-label">Verb Conjugations</h4>
+
+                <h5 class="pt-2">Present Tense:</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <td></td>
+                                <td>Singular</td>
+                                <td>Plural</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>First Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[past][singular][firstPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[past][plural][firstPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Second Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[past][singular][secondPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[past][plural][secondPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Third Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[past][singular][thirdPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[past][plural][thirdPerson]" required/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>Present Tense:</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <td></td>
+                                <td>Singular</td>
+                                <td>Plural</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>First Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[present][singular][firstPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[present][plural][firstPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Second Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[present][singular][secondPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[present][plural][secondPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Third Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[present][singular][thirdPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[present][plural][thirdPerson]" required/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5>Future Tense:</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <td></td>
+                                <td>Singular</td>
+                                <td>Plural</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>First Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[future][singular][firstPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[future][plural][firstPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Second Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[future][singular][secondPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[future][plural][secondPerson]" required/></td>
+                            </tr>
+                            <tr>
+                                <td>Third Person</td>
+                                <td><input type="text" class="form-control" name="conjugations[future][singular][thirdPerson]" required/></td>
+                                <td><input type="text" class="form-control" name="conjugations[future][plural][thirdPerson]" required/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

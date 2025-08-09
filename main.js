@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config({ quiet: true });
 
 const Words = require("./models/words");
+const Verbs = require("./models/verbs");
 
 const port = 5500;
 const url = `http://localhost:${port}`;
@@ -73,11 +74,34 @@ app.post("/post/create", async (req, res) => {
 		antonyms,
 		tags,
 		origin,
+		conjugations = {},
 	} = req.body;
 
 	const defTypes = safeArray(definitions.type);
 	const defDefs = safeArray(definitions.definition);
 	const defExamples = safeArray(definitions.example);
+
+	if (isVerb) {
+		await Verbs.create({
+			group: group,
+			word: word,
+			pronunciation: pronunciation,
+			definitions: defDefs
+				.filter((def) => def && def.trim() !== "")
+				.map((def, i) => ({
+					type: defTypes[i],
+					definition: def,
+					example: defExamples[i],
+				})),
+			conjugations: conjugations,
+			synonyms: cleanArr(synonyms).flat(),
+			antonyms: cleanArr(antonyms).flat(),
+			tags: cleanArr(tags).flat(),
+			origin: origin,
+		});
+
+		return res.redirect("/");
+	}
 
 	await Words.create({
 		group: group,
@@ -161,7 +185,7 @@ app.post("/post/updateWord", async (req, res) => {
 			tags: cleanArr(tags).flat(),
 			origin,
 		});
-		
+
 		res.redirect(`/partials/word?group=${group}`);
 	} catch (error) {
 		console.error("Error updating word:", error);
@@ -185,8 +209,10 @@ app.post("/post/deleteWord", async (req, res) => {
 	}
 });
 
-app.get("/partials/verbs", enforceIframeOnly, (req, res) => {
-	res.render(`partials/verbs`);
+app.get("/partials/verbs", enforceIframeOnly, async (req, res) => {
+	const verbs = await Verbs.find({}).lean().sort({ word: 1 });
+
+	res.render(`partials/verbs`, { verbs: verbs });
 });
 
 app.use((req, res) => {

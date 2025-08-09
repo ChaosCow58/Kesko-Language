@@ -12,6 +12,7 @@
 <body class="bg-light text-dark">
     <div class="container py-5">
         <h1 class="pb-2"><%= words[0]?.group ? "Words - " + words[0].group : 'No Words in this Group' %></h1>
+        
         <% words.forEach(word => { %>
             <div class="card mb-4">
                 <div class="card-header bg-success text-white">
