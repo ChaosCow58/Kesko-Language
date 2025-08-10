@@ -1,6 +1,6 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="mb-4">Update a Word</h1>
+        <h1 class="mb-4">Update a <%= isVerb ? "Verb" : "Word" %></h1>
         <a href="/partials/word?group=<%= word.group %>" class="btn btn-light" style="font-size: 1.7rem"
             title="Go back to home">
             <i class="bi bi-arrow-right"></i>
@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <div class="form-check">
                         <label class="form-check-label" for="isVerbInput">Is Verb</label>
-                        <input class="form-check-input" type="checkbox" id="isVerbInput" name="isVerb" />
+                        <input class="form-check-input" type="checkbox" id="isVerbInput" name="isVerb" <%= isVerb ? "checked" : "" %>/>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div id="definitions">
                 <div class="type-item mb-2">
                     <label for="typeInput" class="form-label">Type</label>
-                    <select class="form-select" name="definitions[type][]" id="typeInput" required>
+                    <select class="form-select typeSelect" name="definitions[type][]" id="typeInput" required>
                         <option value="">Choose Type</option>
                         <option <%=word.definitions[0].type==="noun" ? "selected" : "" %> value="noun">Noun</option>
                         <option <%=word.definitions[0].type==="verb" ? "selected" : "" %> value="verb">Verb</option>
@@ -90,7 +90,7 @@
                                     <button type="button" class="deleteDefinition btn btn-danger bi bi-trash"
                                         title="Remove Definition"></button>
                                 </div>
-                                <select class="form-select" name="definitions[type][]" required>
+                                <select class="form-select typeSelect" name="definitions[type][]" required>
                                     <option value="">Choose Type</option>
                                     <option <%=def.type==="noun" ? "selected" : "" %> value="noun">Noun</option>
                                     <option <%=def.type==="verb" ? "selected" : "" %> value="verb">Verb</option>
@@ -230,8 +230,122 @@
             </div>
         </div>
 
+        <div id="verbConjugations" class="form-group mb-3">
+            <h4 class="form-label">Verb Conjugations 
+                <sup class="required-star bi bi-asterisk"></sup>
+            </h4>
+
+            <h5 class="pt-2">Past Tense:</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <td></td>
+                            <td>Singular</td>
+                            <td>Plural</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[past][singular][firstPerson]"
+                                value="<%= word.conjugations?.past?.singular?.firstPerson ? word.conjugations.past.singular.firstPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[past][plural][firstPerson]"
+                                value="<%= word.conjugations?.past?.plural?.firstPerson ? word.conjugations.past.plural.firstPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Second Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[past][singular][secondPerson]"
+                                value="<%= word.conjugations?.past?.singular?.secondPerson ? word.conjugations.past.singular.secondPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[past][plural][secondPerson]"
+                                value="<%= word.conjugations?.past?.plural?.secondPerson ? word.conjugations.past.plural.secondPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Third Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[past][singular][thirdPerson]"
+                                value="<%= word.conjugations?.past?.singular?.thirdPerson ? word.conjugations.past.singular.thirdPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[past][plural][thirdPerson]"
+                                value="<%= word.conjugations?.past?.plural?.thirdPerson ? word.conjugations.past.plural.thirdPerson : '' %>"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>Present Tense:</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <td></td>
+                            <td>Singular</td>
+                            <td>Plural</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[present][singular][firstPerson]"
+                                value="<%= word.conjugations?.present?.singular?.firstPerson ? word.conjugations.present.singular.firstPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[present][plural][firstPerson]"
+                                value="<%= word.conjugations?.present?.plural?.firstPerson ? word.conjugations.present.plural.firstPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Second Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[present][singular][secondPerson]"
+                                value="<%= word.conjugations?.present?.singular?.secondPerson ? word.conjugations.present.singular.secondPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[present][plural][secondPerson]"
+                                value="<%= word.conjugations?.present?.plural?.secondPerson ? word.conjugations.present.plural.secondPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Third Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[present][singular][thirdPerson]"
+                                value="<%= word.conjugations?.present?.singular?.thirdPerson ? word.conjugations.present.singular.thirdPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[present][plural][thirdPerson]"
+                                value="<%= word.conjugations?.present?.plural?.thirdPerson ? word.conjugations.present.plural.thirdPerson : '' %>"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h5>Future Tense:</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <td></td>
+                            <td>Singular</td>
+                            <td>Plural</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>First Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[future][singular][firstPerson]"
+                                value="<%= word.conjugations?.future?.singular?.firstPerson ? word.conjugations.future.singular.firstPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[future][plural][firstPerson]"
+                                value="<%= word.conjugations?.future?.plural?.firstPerson ? word.conjugations.future.plural.firstPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Second Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[future][singular][secondPerson]"
+                                value="<%= word.conjugations?.future?.singular?.secondPerson ? word.conjugations.future.singular.secondPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[future][plural][secondPerson]"
+                                value="<%= word.conjugations?.future?.plural?.secondPerson ? word.conjugations.future.plural.secondPerson : '' %>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Third Person</td>
+                            <td><input type="text" class="form-control" name="conjugations[future][singular][thirdPerson]"
+                                value="<%= word.conjugations?.future?.singular?.thirdPerson ? word.conjugations.future.singular.thirdPerson : '' %>"/></td>
+                            <td><input type="text" class="form-control" name="conjugations[future][plural][thirdPerson]"
+                                value="<%= word.conjugations?.future?.plural?.thirdPerson ? word.conjugations.future.plural.thirdPerson : '' %>"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-outline-primary">
-            Update Word
+            Update <%= isVerb ? "Verb" : "Word" %>
         </button>
     </form>
 </div>

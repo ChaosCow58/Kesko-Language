@@ -14,9 +14,8 @@ $(() => {
 
 	let verbTypes = [];
 
-	$("#isVerbInput").on("change", function () {
+	const updateVerb = () => {
 		if ($("#isVerbInput").prop("checked")) {
-
 			$("#verbConjugations").show();
 			$("#wordForms").hide();
 
@@ -28,7 +27,6 @@ $(() => {
 				$(el).val("verb");
 				$(el).addClass("fake-disabled");
 			});
-
 		} else {
 			$("#verbConjugations").hide();
 			$("#wordForms").show();
@@ -42,7 +40,14 @@ $(() => {
 
 			verbTypes = [];
 		}
+	};
 
+	if($("#isVerbInput").is(":checked")) {
+		updateVerb();
+	}
+
+	$("#isVerbInput").on("change", function () {
+		updateVerb();
 		updateGroupInput();
 	});
 
@@ -70,10 +75,14 @@ $(() => {
 						<label class="form-label">Type</label>
 						<button type="button" class="deleteDefinition btn btn-danger bi bi-trash" title="Remove Definition"></button>
 					</div>
-					<select class="typeSelect form-select ${$("#isVerbInput").prop("checked") ? "fake-disabled" : ""}" name="definitions[type][]" required>
+					<select class="typeSelect form-select ${
+						$("#isVerbInput").prop("checked") ? "fake-disabled" : ""
+					}" name="definitions[type][]" required>
 						<option value="">Choose Type</option>
 						<option value="noun">Noun</option>
-						<option ${$("#isVerbInput").prop("checked") ? "selected" : ""} value="verb">Verb</option>
+						<option ${
+							$("#isVerbInput").prop("checked") ? "selected" : ""
+						} value="verb">Verb</option>
 						<option value="adjective">Adjective</option>
 						<option value="adverb">Adverb</option>
 						<option value="preposition">Preposition</option>
