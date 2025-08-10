@@ -3,6 +3,7 @@
 
 <head>
     <%- include('../templates/head', { title: "Verbs" }) %>
+    <link rel="stylesheet" href="/public/styles/word.css">
 </head>
 
 <body class="bg-light text-dark">
@@ -14,9 +15,7 @@
         <% verbs.forEach(verb => { %>
             <div class="card mb-4">
                 <div class="card-header bg-success text-white">
-                    <span class="verbId" style="display: none">
-                        <%= verb._id %>
-                    </span>
+                    <span class="id" style="display: none"><%= verb._id %></span>
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>
                             <%= verb.word %> /<i><%= verb.pronunciation %></i>/
@@ -175,6 +174,7 @@
     </div>
 
     <%- include("../templates/scripts") %>
+    <script src="/public/scripts/word.js"></script>
 </body>
 
 </html>

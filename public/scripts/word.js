@@ -1,6 +1,6 @@
 $(() => {
 	$(".deleteBtn").on("click", function () {
-		const wordId = $(this).closest(".card-header").find(".wordId").text();
+		const wordId = $(this).closest(".card-header").find(".id").text();
 		swal.fire({
 			allowOutsideClick: true,
 			allowEscapeKey: true,
@@ -19,7 +19,7 @@ $(() => {
 				$.ajax({
 					url: `/post/deleteWord`,
 					type: "POST",
-					data: { id: wordId },
+					data: { id: wordId, isVerb: location.href.includes("/partials/verbs") },
 					success: (response) => {
 						if (response.success) {
 							location.reload();

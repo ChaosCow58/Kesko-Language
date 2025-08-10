@@ -4,13 +4,13 @@ const path = require("path");
 const mongoose = require("mongoose");
 require("dotenv").config({ quiet: true });
 
-const Words = require("./models/words");
-const Verbs = require("./models/verbs");
+const Words = require("./models/words.js");
+const Verbs = require("./models/verbs.js");
 
 const port = 5500;
 const url = `http://localhost:${port}`;
 
-const app = express();
+const app = new express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -194,13 +194,18 @@ app.post("/post/updateWord", async (req, res) => {
 });
 
 app.post("/post/deleteWord", async (req, res) => {
-	const { id } = req.body;
+	const { id, isVerb } = req.body;
 
 	if (!id) {
 		return res.status(400).render("errors/badrequest");
 	}
 
 	try {
+		if (isVerb === "true" || isVerb === true) {
+			await Verbs.findByIdAndDelete(id);
+			return res.json({ success: true });
+		}
+
 		await Words.findByIdAndDelete(id);
 		res.json({ success: true });
 	} catch (error) {

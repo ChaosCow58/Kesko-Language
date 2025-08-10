@@ -14,16 +14,13 @@ $(() => {
 
 	let verbTypes = [];
 
-	const updateGroupInput = () => {
-		const word = $("#wordInput").val();
-
-		if (testWordInput(word)) return;
-
+	$("#isVerbInput").on("change", function () {
 		if ($("#isVerbInput").prop("checked")) {
-			$("#groupInput").val("Verb");
 
 			$("#verbConjugations").show();
 			$("#wordForms").hide();
+
+			$("#verbConjugations input").attr("required", true);
 
 			$(".typeSelect").each(function (i, el) {
 				verbTypes.push(el.value);
@@ -33,8 +30,6 @@ $(() => {
 			});
 
 		} else {
-			$("#groupInput").val(word.charAt(0).toUpperCase());
-
 			$("#verbConjugations").hide();
 			$("#wordForms").show();
 
@@ -43,12 +38,25 @@ $(() => {
 				$(el).removeClass("fake-disabled");
 			});
 
+			$("#verbConjugations input").removeAttr("required");
+
 			verbTypes = [];
 		}
-	};
 
-	// Trigger when checkbox changes
-	$("#isVerbInput").on("change", updateGroupInput);
+		updateGroupInput();
+	});
+
+	const updateGroupInput = () => {
+		const word = $("#wordInput").val();
+
+		if (testWordInput(word)) return;
+
+		if ($("#isVerbInput").prop("checked")) {
+			$("#groupInput").val("Verb");
+		} else {
+			$("#groupInput").val(word.charAt(0).toUpperCase());
+		}
+	};
 
 	// Trigger when word input changes
 	$("#wordInput").on("input", updateGroupInput);
