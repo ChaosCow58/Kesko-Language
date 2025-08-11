@@ -60,7 +60,7 @@ Possessives:
 
 ## Verbs
 ### Infinitives
-- End in **-ek, ak, ok**
+- End in **-ek, -ak, -ok**
 
 Example:
 - fapek = to eat
