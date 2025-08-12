@@ -3,7 +3,7 @@
 
 <head>
     <%- include('../templates/head', { title: "Rules" }) %>
-    <link rel="stylesheet" href="/public/styles/rules.css">
+        <link rel="stylesheet" href="/public/styles/rules.css">
 </head>
 
 <body class="bg-light text-dark">
@@ -21,6 +21,7 @@
                 <h5>Vowels</h5>
                 <ul>
                     <li>A, E, I, O, U</li>
+                    <li>A = /ah/, E = /eh/, I = /ee/, O = /oh/, U = /uh/</li>
                 </ul>
 
                 <h5>Consonants</h5>
@@ -33,9 +34,8 @@
 
                 <h5>Syllable Structure</h5>
                 <ul>
-                    <li>
-                        Every syllable must start with a consonant and end with a vowel — verbs may be an exception.
-                    </li>
+                    <li>Every syllable must start with a consonant and end with a vowel.</li>
+                    <li>Double vowels fuse into long vowel sounds (e.g., <i>aa</i> = /aː/).</li>
                 </ul>
 
                 <h5>Pronunciation Rules</h5>
@@ -62,9 +62,11 @@
 
             <div class="card-body">
                 <h5>Nouns</h3>
+                    <h5>Plural</h5>
                     <ul>
-                        <li>If the end of a word is a vowel, add "-s"</li>
-                        <li>If the end of a word is a consonant, add "-es"</li>
+                        <li>If a word ends in a vowel → add "-n" (<i>luma</i> → <i>luman</i>).</li>
+                        <li>If a word ends in a consonant → add "-en" (<i>torp</i> → <i>torpen</i>).</li>
+                        <li>No gender marking for nouns.</li>
                     </ul>
 
                     <h5>Pronouns</h5>
@@ -91,11 +93,38 @@
                                 <tr>
                                     <td>He/She</td>
                                     <td>sko (male), ska (female)</td>
-                                    <td>sko/as</td>
+                                    <td>skon</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <h5>Possessives</h5>
+                    <ul>
+                        <li>my = kavo</li>
+                        <li>your = tuvo</li>
+                        <li>his/her/their = sivo</li>
+                        <li>our = kanvo</li>
+                    </ul>
+
+                    <h5>Adjectives</h5>
+                    <ul>
+                        <li>No change for plural.</li>
+                        <li>Placed before nouns (<i>val lum</i> = big house).</li>
+                        <li>Comparatives: add "-ra" (<i>valra</i> = bigger).</li>
+                        <li>Superlatives: add "-ran" (<i>valran</i> = biggest).</li>
+                    </ul>
+
+                    <h5>Word Order</h5>
+                    <ul>
+                        <li>Default: Verb–Subject–Object (VSO) (<i>Fep ke pan</i> = Eat I bread).</li>
+                        <li>Questions: Subject–Verb–Object (SVO) with pitch change or add <b>kae</b> at start.</li>
+                    </ul>
+
+                    <h5>Negation</h5>
+                    <ul>
+                        <li>Use <b>noz</b> before the verb (<i>Noz fep ke pan</i> = I do not eat bread).</li>
+                    </ul>
             </div>
         </div>
 
@@ -106,14 +135,9 @@
             </div>
 
             <div class="card-body">
+                <h5>Infinitives</h5>
                 <ul>
-                    <li>
-                        All infinitive verbs must end only with -er, -ar, -ir.
-                    </li>
-                    <li>
-                        -er and -ir verbs have "e" conjugations and -ar verbs
-                        have "a" conjugations.
-                    </li>
+                    <li>End in <b>-ek</b>, <b>-ak</b>, or <b>-ok</b>.</li>
                 </ul>
 
                 <p>Example:</p>
@@ -122,17 +146,11 @@
                     <li>radir = to run</li>
                     <li>tsukar = to swim</li>
                 </ul>
-            </div>
-        </div>
 
-        <!-- Verb Conjugations -->
-        <div class="card mb-4">
-            <div class="card-header bg-warning text-dark">
-                <h5 class="mb-0">Verb Conjugations</h5>
-            </div>
+                <h5>Conjugations</h5>
 
-            <div class="card-body">
-                <h5>Past Tense:</h5>
+                <!-- Verb Conjugations -->
+                <h5 class="pt-1">Past Tense:</h5>
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm">
                         <thead class="table-light">
@@ -145,18 +163,18 @@
                         <tbody>
                             <tr>
                                 <td>First Person</td>
-                                <td>-ie/ia - fapie (/fah-pee/)</td>
-                                <td>-emus/amus/imus - fapimus (/fah-pee-moos/)</td>
+                                <td>-vi (<i>fapvi</i>)</td>
+                                <td>-vian (<i>fapvian</i>)</td>
                             </tr>
                             <tr>
                                 <td>Second Person</td>
-                                <td>-iste/ista - fapiste (/fah-pee-steh/)</td>
-                                <td>-eron/aron - faperon (/fah-peh-rohn/)</td>
+                                <td>-te (<i>fapte</i>)</td>
+                                <td>-tan (<i>faptan</i>)</td>
                             </tr>
                             <tr>
                                 <td>Third Person</td>
-                                <td>-ile/ila - fapile (/fah-pe-le/)</td>
-                                <td>-evon/avon - fapevon (/fah-pe-von/)</td>
+                                <td>-lo (<i>faplo</i>)</td>
+                                <td>-lon (<i>faplon</i>)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -175,18 +193,18 @@
                         <tbody>
                             <tr>
                                 <td>First Person</td>
-                                <td>-e/a - fape (/fah-peh/)</td>
-                                <td>-emos/amos/imos - fapimos (/fah-pee-mohs/)</td>
+                                <td>-a (<i>fapa</i>)</td>
+                                <td>-an (<i>fapan</i>)</td>
                             </tr>
                             <tr>
                                 <td>Second Person</td>
-                                <td>-et/at - fapet (/fah-peht/)</td>
-                                <td>-ey/ay - fapey (/fah-peh-ee/)</td>
+                                <td>-e (<i>fape</i>)</td>
+                                <td>-en (<i>fapen</i>)</td>
                             </tr>
                             <tr>
                                 <td>Third Person</td>
-                                <td>-es/as - fapes (/fah-pehs/)</td>
-                                <td>-en/an - fapen (/fah-pehn/)</td>
+                                <td>-i (<i>fapi</i>)</td>
+                                <td>-in (<i>fapin</i>)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -205,18 +223,93 @@
                         <tbody>
                             <tr>
                                 <td>First Person</td>
-                                <td>-unor - fapiunor (/fah-pee-oo-nor/)</td>
-                                <td>-unari - fapiunari (/fah-pee-oo-nah-ee/)</td>
+                                <td>-mor (<i>fapmor</i>)</td>
+                                <td>-moran (<i>fapmoran</i>)</td>
                             </tr>
                             <tr>
                                 <td>Second Person</td>
-                                <td>-utek - fapiutek (/fah-pee-oo-tek/)</td>
-                                <td>-usken - fapiusken (/fah-pee-oos-ken/)</td>
+                                <td>-rek (<i>faprek</i>)</td>
+                                <td>-rekan (<i>faprekan</i>)</td>
                             </tr>
                             <tr>
                                 <td>Third Person</td>
-                                <td>-ulon - fapiulon (/fah-pee-oo-lon/)</td>
-                                <td>-uval - fapiuval (/fah-pee-oo-vahl/)</td>
+                                <td>-tal (<i>faptal</i>)</td>
+                                <td>-talan (<i>faptalan</i>)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questions -->
+        <div class="card mb-4">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">Questions & Numbers</h5>
+            </div>
+            <div class="card-body">
+                <h5>Questions</h5>
+                <ul>
+                    <li>Yes/No: add <b>kae</b> at start (<i>Kae stu fape pan?</i> = Do you eat bread?)</li>
+                </ul>
+                <ul>
+                    <li>who = kwa</li>
+                    <li>what = keo</li>
+                    <li>where = lue</li>
+                    <li>when = temo</li>
+                    <li>why = zru</li>
+                    <li>how = yave</li>
+                </ul>
+
+                <h5>Numbers</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Number</th>
+                                <th>Word</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>ena</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>duo</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>trun</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>kvar</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>fim</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>sesh</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>septa</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>okta</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>nuen</td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>dekra</td>
                             </tr>
                         </tbody>
                     </table>

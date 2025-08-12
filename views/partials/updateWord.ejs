@@ -1,7 +1,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="mb-4">Update a <%= isVerb ? "Verb" : "Word" %></h1>
-        <a href="/partials/word?group=<%= word.group %>" class="btn btn-light" style="font-size: 1.7rem"
+        <a href="<%= isVerb ? '/partials/verbs' : '/partials/word?group=' + word.group %>" class="btn btn-light" style="font-size: 1.7rem"
             title="Go back to home">
             <i class="bi bi-arrow-right"></i>
         </a>
